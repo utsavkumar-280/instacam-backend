@@ -5,7 +5,7 @@ const PostSchema = new Schema(
 	{
 		userId: {
 			type: Schema.Types.ObjectId,
-			ref: "User",
+			ref: "UserProfile",
 		},
 		content: {
 			type: String,
@@ -18,7 +18,7 @@ const PostSchema = new Schema(
 		likedBy: [
 			{
 				type: Schema.Types.ObjectId,
-				ref: "User",
+				ref: "UserProfile",
 			},
 		],
 	},
