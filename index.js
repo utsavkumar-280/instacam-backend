@@ -9,6 +9,8 @@ const dbConnection = require("./db/dbConnect.js");
 const route404Handler = require("./middlewares/route404Handler");
 const errorHandler = require("./middlewares/errorHandler");
 
+const quizzes = require("./routes/quizzes.router");
+
 const app = express();
 const PORT = process.env.PORT || 8040;
 app.use(bodyParser.json());
@@ -27,6 +29,11 @@ app.get("/hello", (req, res) => {
 		response: "Kya bolti Public!!",
 	});
 });
+
+//public apis
+app.use("/quizzes", quizzes);
+
+//private apis
 
 //DO NOT MOVE THESE HANDLERS
 // 404 Route Handler
