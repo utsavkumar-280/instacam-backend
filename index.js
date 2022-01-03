@@ -20,7 +20,7 @@ app.use(cors());
 dbConnection();
 
 app.get("/", (req, res) => {
-	res.send("Welcome to InstaCam and VizzQuizz Apis");
+	res.send("Welcome to CineQuiz and Instacam Apis");
 });
 
 app.get("/hello", (req, res) => {
