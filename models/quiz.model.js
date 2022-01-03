@@ -3,7 +3,11 @@ const { Schema, model } = mongoose;
 
 const OptionSchema = new Schema({
 	content: { type: String, required: "Content of the option is required" },
-	isCorrect: { type: Boolean, required, default: false },
+	isCorrect: {
+		type: Boolean,
+		default: false,
+		required: "isCorrect needs to be either true of false.",
+	},
 });
 
 const QuestionSchema = new Schema({
@@ -23,6 +27,10 @@ const QuestionSchema = new Schema({
 
 const QuizSchema = new Schema({
 	name: { type: String, required: "Name of the quiz is required" },
+	description: {
+		type: String,
+		required: "Description of the quiz is required",
+	},
 	coverImage: { type: String, required: "Cover image of the quiz is required" },
 	category: { type: String, required: "Category of the question is required" },
 	totalScore: {
