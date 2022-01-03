@@ -3,9 +3,11 @@ const { Quiz } = require("../models/quiz.model");
 
 const getAllQuizzes = async (req, res) => {
 	try {
+		console.log("hello quiz");
 		const quizzes = await Quiz.find({});
 
-		response.status(200).json({ response: quizzes, success: true });
+		console.log(quizzes);
+		res.status(200).json({ success: true, response: quizzes });
 	} catch (error) {
 		console.log(error);
 		res.status(500).json({
@@ -22,7 +24,11 @@ const createQuiz = async (req, res) => {
 		let NewQuiz = new Quiz(quizDetails);
 		const savedQuiz = await NewQuiz.save();
 
-		res.status(200).json({ response: savedQuiz, success: true });
+		res.status(200).json({
+			success: true,
+			message: "Quiz added successfully",
+			response: savedQuiz,
+		});
 	} catch (error) {
 		console.log(error);
 		res.status(500).json({
