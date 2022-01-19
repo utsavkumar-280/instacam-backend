@@ -20,4 +20,4 @@ const getViewerDetails = async (req, res, next) => {
 	}
 };
 
-module.exports = { getViewerDetails };
+module.exports = getViewerDetails;
