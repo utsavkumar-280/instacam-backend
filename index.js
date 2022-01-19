@@ -5,11 +5,11 @@ const morgan = require("morgan");
 require("dotenv").config();
 
 const dbConnection = require("./db/dbConnect.js");
-// const userAuthorization = require("./middlewares/userAuthorization");
 const route404Handler = require("./middlewares/route404Handler");
 const errorHandler = require("./middlewares/errorHandler");
 
 const quizzes = require("./routes/quizzes.router");
+const userProfiles = require("./routes/userProfiles.router");
 
 const app = express();
 const PORT = process.env.PORT || 8040;
@@ -30,10 +30,8 @@ app.get("/hello", (req, res) => {
 	});
 });
 
-//public apis
 app.use("/quizzes", quizzes);
-
-//private apis
+app.use("user-profiles", userProfiles);
 
 //DO NOT MOVE THESE HANDLERS
 // 404 Route Handler
