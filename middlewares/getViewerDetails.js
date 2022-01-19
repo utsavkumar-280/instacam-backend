@@ -8,6 +8,9 @@ const getViewerDetails = async (req, res, next) => {
 		if (!viewer) {
 			res.status(403).json({ message: "user does not exist" });
 		}
+
+		req.viewer = viewer;
+		next();
 	} catch (error) {
 		console.log(error);
 		res.status(500).json({

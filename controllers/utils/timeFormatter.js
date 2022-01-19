@@ -4,13 +4,13 @@ const timeFormatter = time => {
   if (totalMin <= 0) {
     return "Just now";
   }
-  else if (totalMin < 60) {
+  if (totalMin < 60) {
     if (totalMin === 1) {
       return `${totalMin} minute ago`
     }
     return `${totalMin} minutes ago`
   }
-  else if (totalMin >= 60 && totalMin < 1440) {
+  if (totalMin >= 60 && totalMin < 1440) {
     const totalHrs = Math.floor(totalMin / 60);
     if (totalHrs === 1) {
       return `${totalHrs} hour ago`

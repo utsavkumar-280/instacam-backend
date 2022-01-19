@@ -5,10 +5,9 @@ const userProfileModifier = (userDetails, viewerId) => {
 		followers: userDetails.followers.length,
 		following: userDetails.following.length,
 	};
-	userDetails._doc.isfollowedByViewer =
-		userDetails.followers.includes(viewerId);
+	userDetails._doc.followedByViewer = userDetails.followers.includes(viewerId);
 
-	userDetails._doc.isfollowingViewer = userDetails.following.includes(viewerId);
+	userDetails._doc.followingViewer = userDetails.following.includes(viewerId);
 
 	userDetails.__v = undefined;
 	userDetails.userId = undefined;
@@ -17,3 +16,5 @@ const userProfileModifier = (userDetails, viewerId) => {
 
 	return userDetails;
 };
+
+module.exports = { userProfileModifier };
