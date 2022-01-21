@@ -7,7 +7,7 @@ const PostSchema = new Schema(
 			type: Schema.Types.ObjectId,
 			ref: "UserProfile",
 		},
-		content: {
+		caption: {
 			type: String,
 			required: "Content of the post is required",
 		},

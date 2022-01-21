@@ -7,11 +7,10 @@ const { User } = require("../models/user.model");
 const { UserProfile } = require("../models/userProfile.model");
 
 const { getUserProfileName } = require("./utils/getUserProfileName");
-
 const { userProfileModifier } = require("./utils/userProfileModifier");
-
 const { isFollowedByViewer } = require("./utils/isFollowedByViewer");
-const res = require("express/lib/response");
+
+const { pushFollowNotification } = require("./notfications.controller");
 
 const createUserAndUserProfile = async (req, res) => {
 	try {
@@ -233,10 +232,22 @@ const followOrUnfollowUser = async (req, res) => {
 			userDetails.followers = userDetails.followers.filter(
 				(id) => id.toString() !== viewer._id.toString()
 			);
+
+			await pushFollowNotification({
+				userIdWhoFollowed: viewer._id,
+				ownerUserId: userDetails._id,
+				type: "unfollow",
+			});
 		} else {
 			viewer.following.unshift(userDetails._id);
 			userDetails.followers.unshift(viewer._id);
 			isAdded = true;
+
+			await pushFollowNotification({
+				userIdWhoFollowed: viewer._id,
+				ownerUserId: userDetails._id,
+				type: "follow",
+			});
 		}
 
 		await viewer.save();

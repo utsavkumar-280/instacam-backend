@@ -13,6 +13,10 @@ const {
 	removeFromFollowing,
 } = require("../controllers/userProfiles.controller");
 
+const {
+	getNotificationsOfUser,
+} = require("../controllers/notfications.controller");
+
 const getViewerDetails = require("../middlewares/getViewerDetails");
 
 const userAuthorization = require("../middlewares/userAuthorization");
@@ -24,6 +28,8 @@ router.use(userAuthorization);
 router.use(getViewerDetails);
 
 router.route("/").get(getAllUsers);
+
+router.route("/notifications").get(getNotificationsOfUser);
 
 router.route("/:userName").get(getUserProfile).post(updateUserProfile);
 

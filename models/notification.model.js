@@ -17,7 +17,7 @@ const NotificationSchema = new Schema(
 			type: String,
 			enum: ["like", "follow"],
 		},
-		notificationHeading: {
+		notificationTitle: {
 			type: String,
 		},
 
