@@ -8,6 +8,7 @@ const dbConnection = require("./db/dbConnect.js");
 const route404Handler = require("./middlewares/route404Handler");
 const errorHandler = require("./middlewares/errorHandler");
 
+const posts = require("./routes/posts.router");
 const quizzes = require("./routes/quizzes.router");
 const userProfiles = require("./routes/userProfiles.router");
 
@@ -31,7 +32,9 @@ app.get("/hello", (req, res) => {
 });
 
 app.use("/quizzes", quizzes);
-app.use("user-profiles", userProfiles);
+
+app.use("/user-profiles", userProfiles);
+app.use("/posts", posts);
 
 //DO NOT MOVE THESE HANDLERS
 // 404 Route Handler
