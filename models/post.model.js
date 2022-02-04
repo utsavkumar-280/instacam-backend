@@ -9,13 +9,13 @@ const PostSchema = new Schema(
 		},
 		caption: {
 			type: String,
-			required: "Content of the post is required",
+			required: "Caption of the post is required",
 		},
 		image: {
 			type: String,
 			default: "",
 		},
-		likedBy: [
+		likes: [
 			{
 				type: Schema.Types.ObjectId,
 				ref: "UserProfile",

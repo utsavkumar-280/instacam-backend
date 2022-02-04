@@ -103,9 +103,11 @@ const getNotificationsOfUser = async (req, res) => {
 			.populate({ path: "notificationUserId", select: "userName profilePic" })
 			.populate({ path: "likedPost", select: "caption" })
 			.sort({ createdAt: -1 });
+
 		for (notification of notifications) {
 			notification.time = timeFormatter(notification.createdAt);
 		}
+
 		res.status(200).json({ response: notifications });
 	} catch (error) {
 		console.log(error);
