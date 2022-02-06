@@ -7,7 +7,7 @@ const { postModifier } = require("./utils/postModifier");
 
 const { pushLikeNotification } = require("./notfications.controller");
 
-const createPost = (res, req) => {
+const createPost = async (res, req) => {
 	try {
 		const { viewer } = req;
 		const postDetails = req.body;
@@ -61,7 +61,7 @@ const getAllPosts = async (res, req) => {
 	}
 };
 
-const getAllPostsOfUser = (res, req) => {
+const getAllPostsOfUser = async (res, req) => {
 	try {
 		const { viewer } = req;
 		const { userName } = req.params;
@@ -94,7 +94,7 @@ const getAllPostsOfUser = (res, req) => {
 	}
 };
 
-const getLikedUsers = (res, req) => {
+const getLikedUsers = async (res, req) => {
 	try {
 		const { postId } = req.params;
 		const { viewer } = req;
@@ -119,7 +119,7 @@ const getLikedUsers = (res, req) => {
 	}
 };
 
-const likeOrDislikePost = (res, req) => {
+const likeOrDislikePost = async (res, req) => {
 	try {
 		const { viewer } = req;
 		const { postId } = req.params;
@@ -164,7 +164,7 @@ const likeOrDislikePost = (res, req) => {
 	}
 };
 
-const deletePost = (res, req) => {
+const deletePost = async (res, req) => {
 	try {
 		const { postId } = req.params;
 		const { viewer } = req;
