@@ -17,10 +17,11 @@ const createUserAndUserProfile = async (req, res) => {
 		const userDetails = req.body;
 
 		const user = await User.findOne({ email: userDetails.email });
-		const viewer = await UserProfile.findOne({ userId: user._id });
 
-		if (user && viewer) {
-			res.status(409).json({ message: "Account already exists, please login" });
+		if (user) {
+			res.status(409).json({
+				message: "Account already exists with this email, please login",
+			});
 			return;
 		}
 
@@ -56,22 +57,24 @@ const createUserAndUserProfile = async (req, res) => {
 	}
 };
 
-const loginUser = async () => {
+const loginUser = async (req, res) => {
 	try {
 		const email = req.get("email");
 		const password = req.get("password");
-		const user = await User.findOne({ email });
-		const userProfile = await UserProfile.findOne({ userId: user._id });
-		const isValidPassword = await bcrypt.compare(password, user.password);
 
+		const user = await User.findOne({ email });
 		if (!user) {
 			res.status(403).json({ message: "User does not exists, please Sign up" });
 			return;
 		}
+
+		const userProfile = await UserProfile.findOne({ userId: user._id });
 		if (!userProfile) {
 			res.status(403).json({ message: "User does not exists, please Sign up" });
 			return;
 		}
+
+		const isValidPassword = await bcrypt.compare(password, user.password);
 
 		if (!isValidPassword) {
 			res.status(403).json({ message: "Incorrect password" });
