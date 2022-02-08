@@ -61,9 +61,10 @@ const getAllPosts = async (res, req) => {
 	}
 };
 
-const getAllPostsOfUser = async (res, req) => {
+const getAllPostsOfUser = async (req, res) => {
 	try {
 		const { viewer } = req;
+		console.log(req.params);
 		const { userName } = req.params;
 
 		const user = await UserProfile.findOne({ userName });
@@ -94,7 +95,7 @@ const getAllPostsOfUser = async (res, req) => {
 	}
 };
 
-const getLikedUsers = async (res, req) => {
+const getLikedUsers = async (req, res) => {
 	try {
 		const { postId } = req.params;
 		const { viewer } = req;
@@ -119,7 +120,7 @@ const getLikedUsers = async (res, req) => {
 	}
 };
 
-const likeOrDislikePost = async (res, req) => {
+const likeOrDislikePost = async (req, res) => {
 	try {
 		const { viewer } = req;
 		const { postId } = req.params;
@@ -164,7 +165,7 @@ const likeOrDislikePost = async (res, req) => {
 	}
 };
 
-const deletePost = async (res, req) => {
+const deletePost = async (req, res) => {
 	try {
 		const { postId } = req.params;
 		const { viewer } = req;
