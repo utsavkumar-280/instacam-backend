@@ -1,5 +1,5 @@
 const getUserProfileName = (user, viewerId) => {
-	console.log({ user });
+	// console.log({ user });
 
 	user.name = `${user.userId.firstname} ${user.userId.lastname}`;
 	user.followedByViewer = user.followers.find(
@@ -10,6 +10,7 @@ const getUserProfileName = (user, viewerId) => {
 
 	user.followers = undefined;
 	user.userId = undefined;
+	// console.log({ modifiedUsers: user });
 
 	return user;
 };

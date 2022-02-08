@@ -191,10 +191,13 @@ const getFollowersDetails = async (req, res) => {
 		const { userName } = req.params;
 		const { viewer } = req;
 
-		let userDetails = await UserProfile.findOne({ userName }).lean().populate({
-			path: "followers",
-			select: "userName profilePic followers",
-		});
+		let userDetails = await UserProfile.findOne({ userName })
+			.lean()
+			.populate({
+				path: "followers",
+				select: "userId userName profilePic followers",
+				populate: { path: "userId", select: "firstname lastname" },
+			});
 
 		if (!userDetails) {
 			res.status(404).json({ message: "User not found" });
@@ -271,10 +274,13 @@ const getFollowingDetails = async (req, res) => {
 		const { userName } = req.params;
 		const { viewer } = req;
 
-		let userDetails = await UserProfile.findOne({ userName }).lean().populate({
-			path: "following",
-			select: "userName profilePic followers",
-		});
+		let userDetails = await UserProfile.findOne({ userName })
+			.lean()
+			.populate({
+				path: "following",
+				select: "userId userName profilePic followers",
+				populate: { path: "userId", select: "firstname lastname" },
+			});
 
 		if (!userDetails) {
 			res.status(404).json({ message: "User not found" });

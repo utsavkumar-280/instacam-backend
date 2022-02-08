@@ -7,7 +7,7 @@ const { postModifier } = require("./utils/postModifier");
 
 const { pushLikeNotification } = require("./notfications.controller");
 
-const createPost = async (res, req) => {
+const createPost = async (req, res) => {
 	try {
 		const { viewer } = req;
 		const postDetails = req.body;
@@ -34,7 +34,7 @@ const createPost = async (res, req) => {
 	}
 };
 
-const getAllPosts = async (res, req) => {
+const getAllPosts = async (req, res) => {
 	try {
 		const { viewer } = req;
 		const allPosts = await Post.find({
@@ -64,7 +64,6 @@ const getAllPosts = async (res, req) => {
 const getAllPostsOfUser = async (req, res) => {
 	try {
 		const { viewer } = req;
-		console.log(req.params);
 		const { userName } = req.params;
 
 		const user = await UserProfile.findOne({ userName });
