@@ -313,16 +313,17 @@ const removeFromFollowing = async (req, res) => {
 			return;
 		}
 
-		if (viewer.following.includes(userDetails._id)) {
-			viewer.following = viewer.following.filter(
+		if (viewer.followers.includes(userDetails._id)) {
+			viewer.followers = viewer.followers.filter(
 				(id) => id.toString() !== userDetails._id.toString()
 			);
 
-			userDetails.followers = userDetails.followers.filter(
+			userDetails.following = userDetails.following.filter(
 				(id) => id.toString() !== viewer._id.toString()
 			);
 		} else {
 			res.status(400).json({ message: "Invalid request" });
+			return;
 		}
 
 		await viewer.save();
