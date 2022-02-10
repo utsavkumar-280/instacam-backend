@@ -4,13 +4,13 @@ const timeFormatter = (time) => {
 	if (totalMin <= 0) {
 		const totalSec = Math.floor((Date.now() - time.getTime()) / 1000);
 
-		if (totalSec <= 0) {
+		if (totalSec < 1) {
 			return "1s";
 		}
 		return `${totalSec}s`;
 	}
 	if (totalMin < 60) {
-		return `${totalMin}min`;
+		return `${totalMin}m`;
 	}
 	if (totalMin >= 60 && totalMin < 1440) {
 		const totalHrs = Math.floor(totalMin / 60);
