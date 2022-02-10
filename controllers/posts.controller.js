@@ -153,8 +153,8 @@ const likeOrDislikePost = async (req, res) => {
 		}
 
 		await post.save();
-
-		res.status(200).json({ response: isLiked });
+		console.log({ isLiked });
+		res.status(200).json({ isLiked });
 	} catch (error) {
 		console.log(error);
 		res.status(500).json({
