@@ -16,11 +16,13 @@ const createPost = async (req, res) => {
 
 		await createdPost.save();
 
-		await createdPost.populate({
-			path: "userId",
-			select: "userId userName profilePic",
-			populate: { path: "userId", select: "firstname lastname" },
-		});
+		await createdPost
+			.populate({
+				path: "userId",
+				select: "userId userName profilePic",
+				populate: { path: "userId", select: "firstname lastname" },
+			})
+			.execPopulate();
 
 		createdPost = postModifier(createdPost, viewer._id);
 

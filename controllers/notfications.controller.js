@@ -100,7 +100,11 @@ const getNotificationsOfUser = async (req, res) => {
 			}
 		)
 			.lean()
-			.populate({ path: "notificationUserId", select: "userName profilePic" })
+			.populate({
+				path: "notificationUserId",
+				select: "userId userName profilePic",
+				populate: { path: "userId", select: "firstname lastname" },
+			})
 			.populate({ path: "likedPost", select: "caption" })
 			.sort({ createdAt: -1 });
 
